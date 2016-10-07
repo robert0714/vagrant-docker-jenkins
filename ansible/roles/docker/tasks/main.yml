@@ -1,0 +1,46 @@
+- name: CentOS dirctory are copied
+  file: path=/etc/docker state=directory mode=0755
+  ignore_errors: yes
+  tags: [docker]
+
+- name: add repository
+  yum_repository:
+    name: dockerrepo
+    description: Docker Repository
+    baseurl: https://yum.dockerproject.org/repo/main/centos/7/
+    gpgkey: https://yum.dockerproject.org/gpg
+    enabled: 1
+    gpgcheck: 1
+  ignore_errors: yes
+  tags: [docker]
+
+- name: Docker is present
+  yum:
+    name: docker-engine
+    state: latest
+  tags: [docker]
+
+- name: Python-pip is present
+  yum: name=python-pip state=present
+  tags: [docker]
+
+- name: Debian docker-py is present
+  pip:
+    name: docker-py
+    version: 1.10.3
+    state: present
+  tags: [docker]
+
+- name: Files are present
+  copy:
+    src: docker
+    dest: /etc/sysconfig/docker
+  register: copy_result
+  tags: [docker]
+
+- name: Docker service is restarted
+  service:
+    name: docker
+    state: restarted
+  when: copy_result|changed
+  tags: [docker]

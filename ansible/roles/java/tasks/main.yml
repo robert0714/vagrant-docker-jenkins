@@ -1,0 +1,6 @@
+- name: Package are present
+  yum:
+    name=java-1.7.0-openjdk
+    state=present
+  with_items: packages
+  tags: [java]
