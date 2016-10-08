@@ -45,6 +45,13 @@
   register: user_result
   tags: [docker]
 
+- name: Debian Docker service is restarted
+  service:
+    name: docker
+    state: restarted
+  when: copy_result|changed or user_result|changed
+  tags: [docker]
+
 - name: DockerUI is running
   docker:
     image: uifd/ui-for-docker
@@ -54,6 +61,6 @@
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   when: not skip_ui is defined
-  ignore_errors: yes
   tags: [docker]
+  
   
