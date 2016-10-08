@@ -1,0 +1,16 @@
+- name: CentOS files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ centos_files }}"
+  tags: [centos]
+
+- name: CentOS Daemon is reloaded
+  command: systemctl daemon-reload
+  tags: [centos]
+
+- name: Centos sshd service is restarted
+  service:
+    name: sshd
+    state: restarted
+  tags: [centos]

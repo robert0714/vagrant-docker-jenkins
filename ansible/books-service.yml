@@ -2,5 +2,6 @@
   remote_user: vagrant
   sudo: yes
   roles:
+    - cenots 
     - docker
     - books-service
