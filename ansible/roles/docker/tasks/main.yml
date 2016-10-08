@@ -57,9 +57,3 @@
   ignore_errors: yes
   tags: [docker]
   
-- name: Docker service is restarted
-  service:
-    name: docker
-    state: restarted
-  when: copy_result|changed
-  tags: [docker]
