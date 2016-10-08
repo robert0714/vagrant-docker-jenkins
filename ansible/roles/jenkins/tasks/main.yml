@@ -62,7 +62,6 @@
     name: jenkins
     ports: 8080:8080
     privileged: yes
-    docker_url: tcp://0.0.0.0:2375
     volumes:
       - /data/jenkins:/var/jenkins_home 
   tags: [jenkins]
