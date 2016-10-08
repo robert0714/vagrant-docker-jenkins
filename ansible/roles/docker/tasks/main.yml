@@ -57,6 +57,7 @@
     name: dockerui
     ports: 9000:9000
     privileged: yes
+    docker_url: tcp://0.0.0.0:2375
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   when: not skip_ui is defined
