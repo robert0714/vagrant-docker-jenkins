@@ -10,4 +10,5 @@
     image=registry
     ports=5000:5000
     volumes=/data/registry:/tmp/registry
+    docker_url: tcp://"{{ ip }}":2375
   tags: [registry]
