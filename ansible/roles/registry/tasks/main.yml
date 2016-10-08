@@ -13,4 +13,4 @@
     docker_url: tcp://0.0.0.0:2375
     volumes:
       - /data/registry:/tmp/registry
-   tags: [registry]
+  tags: [registry]
