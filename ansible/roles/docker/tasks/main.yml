@@ -38,6 +38,25 @@
     state: present
   tags: [docker]
 
+- name: vagrant user is added to the docker group
+  user:
+    name: vagrant
+    group: docker
+  register: user_result
+  tags: [docker]
+
+- name: DockerUI is running
+  docker:
+    image: uifd/ui-for-docker
+    name: dockerui
+    ports: 9000:9000
+    privileged: yes
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  when: not skip_ui is defined
+  ignore_errors: yes
+  tags: [docker]
+  
 - name: Docker service is restarted
   service:
     name: docker
