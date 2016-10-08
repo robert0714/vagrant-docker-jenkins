@@ -38,13 +38,6 @@
     state: present
   tags: [docker]
 
-- name: Files are present
-  copy:
-    src: docker
-    dest: /etc/sysconfig/docker
-  register: copy_result
-  tags: [docker]
-
 - name: Docker service is restarted
   service:
     name: docker
