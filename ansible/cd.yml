@@ -2,7 +2,7 @@
   remote_user: vagrant
   sudo: yes
   roles:
-    - cenots
+    - centos
     - java
     - docker
     - registry
