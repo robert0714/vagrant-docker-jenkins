@@ -45,11 +45,10 @@
   register: user_result
   tags: [docker]
 
-- name: Debian Docker service is restarted
+- name: CentOS service is running
   service:
     name: docker
-    state: restarted
-  when: copy_result|changed or user_result|changed
+    state: running
   tags: [docker]
 
 - name: DockerUI is running
