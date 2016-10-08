@@ -31,8 +31,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #    prod.vm.network :forwarded_port, host: 2202, guest: 22, id: "ssh", auto_correct: true
 #    prod.vm.network :forwarded_port, host: 9001, guest: 9001
     prod.vm.network "private_network", ip: "192.168.50.92"
-    prod.vm.network "public_network", bridge: "eno4", ip: "192.168.57.34",  netmask: "255.255.255.0" , gateway: "192.168.57.1"
-    prod.vm.provision :shell, inline: 'ansible-playbook /vagrant/ansible/prod.yml -c local -v'
+    prod.vm.network "public_network", bridge: "eno4", ip: "192.168.57.34",  netmask: "255.255.255.0" , gateway: "192.168.57.1"	
+#   prod.vm.provision :shell, inline: 'ansible-playbook /vagrant/ansible/prod.yml -c local -v'
     prod.vm.hostname = "prod"
   end
   if Vagrant.has_plugin?("vagrant-cachier")
