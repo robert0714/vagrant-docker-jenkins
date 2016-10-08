@@ -1,14 +1,16 @@
 - name: Directory is present
   file:
-    path=/data/registry
-    state=directory
+    path: /data/registry
+    state: directory
   tags: [registry]
 
-- name: Container is running
+- name: Container is running  
   docker:
-    name=registry
-    image=registry
-    ports=5000:5000
-    volumes=/data/registry:/tmp/registry
+    image: registry
+    name: registry
+    ports: 5000:5000
+    privileged: yes
     docker_url: tcp://0.0.0.0:2375
-  tags: [registry]
+    volumes:
+      - /data/registry:/tmp/registry
+   tags: [registry]
