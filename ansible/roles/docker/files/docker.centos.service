@@ -9,7 +9,7 @@ After=network.target
 #EnvironmentFile=-/etc/sysconfig/docker
 Type=notify
 #ExecStart=/usr/bin/docker daemon --insecure-registry 192.168.57.27:5000 -H fd://
-ExecStart=/usr/bin/dockerd   
+ExecStart=/usr/bin/dockerd   -H tcp://0.0.0.0:2375  -H unix:///var/run/docker.sock
 ExecReload=/bin/kill -s HUP $MAINPID
 
 
