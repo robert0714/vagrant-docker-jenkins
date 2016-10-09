@@ -1,3 +1,9 @@
+- name:  Extra Packages for Enterprise Linux (or EPEL) is present
+  yum: 
+     name: epel-release 
+     state: latest  
+  tags: [centos]
+
 - name: CentOS files are copied
   copy:
     src: "{{ item.src }}"
